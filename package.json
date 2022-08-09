@@ -1,6 +1,7 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
+  "name": "pokedex-solid-graphql",
+  "version": "0.1.0",
+  "author": {"name": "Júnior Nascimento", "email": "junior.nascm@gmail.com"},
   "description": "",
   "scripts": {
     "dev": "vite",
