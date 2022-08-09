@@ -12,7 +12,7 @@ const App: Component = () => {
   return (
     <Provider value={client}>
       <Routes>
-        <Route path="/:id?" component={Main} />
+        <Route path="/" component={Main} />
       </Routes>
     </Provider>
   );

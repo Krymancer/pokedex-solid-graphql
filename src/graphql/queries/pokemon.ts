@@ -1,4 +1,6 @@
-export const pokemonQuery = `
+import {gql} from '@solid-primitives/graphql';
+
+export const pokemonQuery = gql`
 query Pokemon($id: Int!) {
   pokemon_v2_pokemon(where: { id: { _eq: $id } }) {
     id
