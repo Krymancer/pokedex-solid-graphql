@@ -1,112 +1,52 @@
-import {Accessor, Component, createSignal, For, Show} from 'solid-js';
-import {useParams} from '@solidjs/router';
+import {Accessor, Component, createSignal, Show} from 'solid-js';
+import {useNavigate, useParams} from '@solidjs/router';
 import {createQuery} from 'solid-urql';
 
-import getAverageRGB, {rgbToHex} from '@utils/color';
+import getAverageRGB from '@utils/color';
+import {pokemonQuery} from '@graphql/queries/pokemon';
+import type {PokemonResult} from '@graphql/types/pokemon';
 
-const pokemonQuery = `
-query Pokemon($id: Int!) {
-  pokemon_v2_pokemon(where: { id: { _eq: $id } }) {
-    id
-    name
-    pokemon_v2_pokemontypes {
-      pokemon_v2_type {
-        name
-      }
-    }
-    pokemon_v2_pokemonstats {
-      pokemon_v2_stat {
-        name
-      }
-      base_stat
-    }
-  }
-  pokemon_v2_language(where: { id: { _eq:11 } }) {
-    id
-    name
-    pokemon_v2_pokemonspeciesnames(where: { pokemon_species_id: { _eq:$id } }) {
-      id
-      name
-      genus
-      pokemon_species_id
-    }
-  }
-}
-`;
-
-type PokemonResult = {
-  pokemon_v2_pokemon: {
-    id: number;
-    name: string;
-    pokemon_v2_pokemontypes: {
-      pokemon_v2_type: {
-        name: string;
-      }[];
-    }[];
-    pokemon_v2_pokemonstats: {
-      pokemon_v2_stat: {
-        name: string;
-      }[];
-      base_stat: number;
-    }[];
-  }[];
-  pokemon_v2_language: {
-    id: number;
-    name: string;
-    pokemon_v2_pokemonspeciesnames: {
-      id: number;
-      name: string;
-      genus: string;
-      pokemon_species_id: number;
-    }[];
-  }[];
-};
+import JapaneseName from '@components/JapaneseName';
+import PokemonSummary from '@components/PokemonSummary';
+import PokemonStats from '@src/components/PokemonStats';
 
 const Main: Component = () => {
   const {id} = useParams();
 
-  const numberId = parseInt(id) || 1;
+  const [numberId, setNumberId] = createSignal(parseInt(id) || 1);
 
-  console.log('Id:', id, numberId);
-
-  const [item, itemState] : [Accessor<PokemonResult>, any, any?]= createQuery({
+  const [item, itemState] : [Accessor<PokemonResult>, any, any?] = createQuery({
     query: pokemonQuery,
-    variables: {id},
+    variables: {id: numberId()},
   });
 
   const [color, setColor] = createSignal('#ffffff');
-  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${numberId()}.png`;
   let img;
 
-  function changeColor() {
-    const color = getAverageRGB(img);
-    const hexColor = rgbToHex(...color);
-    setColor(hexColor);
+  async function changeColor() {
+    const color = await getAverageRGB(img);
+    console.log(color);
+    setColor(color);
   }
 
-  function pokemon(acessor: Accessor<PokemonResult>) {
+  function pokemon() {
     return item().pokemon_v2_pokemon[0];
   }
 
-  function species(acessor: Accessor<PokemonResult>) {
+  function species() {
     return item().pokemon_v2_language[0].pokemon_v2_pokemonspeciesnames[0];
   }
 
   return (
     <Show when={!itemState().fetching} fallback={null}>
-      <div class="h-screen w-screen flex items-center justify-center">
-        <div style={{'background-color': `#${color()}`}} class="w-full h-full justify-center items-center flex">
+      <div id="main" style={{'background-color': `${color()}`}} class="h-screen w-screen flex flex-col items-center justify-center">
+        <div class="w-full h-full justify-center items-center flex">
           <img src={imageUrl} ref={img} crossOrigin="anonymous" onLoad={changeColor} />
           <div>
-            <h1>Id: {pokemon(item).id}</h1>
-            <h1>Name: {pokemon(item).name}</h1>
-            <h1>JP Name:{species(item).name}</h1>
-            <For each={pokemon(item).pokemon_v2_pokemonstats} fallback={null}>
-              {(item : any) => <h1>{item.pokemon_v2_stat.name}:{item.base_stat}</h1>}
-            </For>
-            <For each={pokemon(item).pokemon_v2_pokemontypes} fallback={null}>
-              {(item : any) => <h1>Type: {item.pokemon_v2_type.name}</h1>}
-            </For>
+            <PokemonSummary name={pokemon().name} number={pokemon().id} />
+            <JapaneseName name={species().name} />
+            <PokemonStats stats={pokemon().pokemon_v2_pokemonstats} types={pokemon().pokemon_v2_pokemontypes} />
           </div>
         </div>
       </div>

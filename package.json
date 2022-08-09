@@ -30,6 +30,8 @@
     "@urql/core": "^2.6.1",
     "graphql": "^15.8.0",
     "quantize": "^1.2.0",
+    "rgbaster": "^2.1.1",
+    "solid-icons": "^1.0.1",
     "solid-js": "^1.4.7",
     "solid-urql": "^0.2.0"
   }
