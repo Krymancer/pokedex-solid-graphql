@@ -41,7 +41,7 @@ const Main: Component = () => {
 
   return (
     <Show when={data()} fallback={null}>
-      <div id="main" style={{'background-color': `${color()}`}} class="h-screen w-screen flex flex-col items-center justify-center">
+      <div id="main" style={{'background-color': `${color()}`}} class="h-screen w-screen flex flex-col items-center justify-center transition-all duration-300 ease-linear">
         <div class="w-full h-full justify-center items-center flex">
           <PokemonImage id={id()} setColor={setColor} />
           <div>
