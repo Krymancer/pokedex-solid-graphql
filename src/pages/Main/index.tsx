@@ -50,7 +50,7 @@ const Main: Component = () => {
             <PokemonStats stats={pokemon().pokemon_v2_pokemonstats} types={pokemon().pokemon_v2_pokemontypes} />
           </div>
         </div>
-        <Controls next={next} prev={prev} />
+        <Controls next={next} prev={prev} current={id()} setCurrent={setId} />
       </div>
     </Show>
   );
