@@ -26,6 +26,11 @@
     "vite-tsconfig-paths": "^3.5.0"
   },
   "dependencies": {
-    "solid-js": "^1.4.7"
+    "@solidjs/router": "^0.4.2",
+    "@urql/core": "^2.6.1",
+    "colorthief": "^2.3.2",
+    "graphql": "^15.8.0",
+    "solid-js": "^1.4.7",
+    "solid-urql": "^0.2.0"
   }
 }
