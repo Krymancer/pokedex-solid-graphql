@@ -1,26 +1,43 @@
 import type {Component} from 'solid-js';
 
-const baseUrl = 'src/assets/icons/';
+import bugIconUrl from '@assets/icons/bug.svg';
+import darkIconUrl from '@assets/icons/dark.svg';
+import dragonIconUrl from '@assets/icons/dragon.svg';
+import electricIconUrl from '@assets/icons/electric.svg';
+import fairyIconUrl from '@assets/icons/fairy.svg';
+import fightingIconUrl from '@assets/icons/fighting.svg';
+import fireIconUrl from '@assets/icons/fire.svg';
+import flyingIconUrl from '@assets/icons/flying.svg';
+import ghostIconUrl from '@assets/icons/ghost.svg';
+import grassIconUrl from '@assets/icons/grass.svg';
+import groundIconUrl from '@assets/icons/ground.svg';
+import iceIconUrl from '@assets/icons/ice.svg';
+import normalIconUrl from '@assets/icons/normal.svg';
+import poisonIconUrl from '@assets/icons/poison.svg';
+import psychicIconUrl from '@assets/icons/psychic.svg';
+import rockIconUrl from '@assets/icons/rock.svg';
+import steelIconUrl from '@assets/icons/steel.svg';
+import waterIconUrl from '@assets/icons/water.svg';
 
 const typesIcons = {
-  bug: `${baseUrl}bug.svg`,
-  dark: `${baseUrl}dark.svg`,
-  dragon: `${baseUrl}dragon.svg`,
-  electric: `${baseUrl}electric.svg`,
-  fairy: `${baseUrl}fairy.svg`,
-  fighting: `${baseUrl}fighting.svg`,
-  fire: `${baseUrl}fire.svg`,
-  flying: `${baseUrl}flying.svg`,
-  ghost: `${baseUrl}ghost.svg`,
-  grass: `${baseUrl}grass.svg`,
-  ground: `${baseUrl}ground.svg`,
-  ice: `${baseUrl}ice.svg`,
-  normal: `${baseUrl}normal.svg`,
-  poison: `${baseUrl}poison.svg`,
-  psychic: `${baseUrl}psychic.svg`,
-  rock: `${baseUrl}rock.svg`,
-  steel: `${baseUrl}steel.svg`,
-  water: `${baseUrl}water.svg`,
+  bug: bugIconUrl,
+  dark: darkIconUrl,
+  dragon: dragonIconUrl,
+  electric: electricIconUrl,
+  fairy: fairyIconUrl,
+  fighting: fightingIconUrl,
+  fire: fireIconUrl,
+  flying: flyingIconUrl,
+  ghost: ghostIconUrl,
+  grass: grassIconUrl,
+  ground: groundIconUrl,
+  ice: iceIconUrl,
+  normal: normalIconUrl,
+  poison: poisonIconUrl,
+  psychic: psychicIconUrl,
+  rock: rockIconUrl,
+  steel: steelIconUrl,
+  water: waterIconUrl,
 };
 
 interface PokemonTypeIcon {
