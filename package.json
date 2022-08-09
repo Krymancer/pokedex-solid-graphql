@@ -28,8 +28,8 @@
   "dependencies": {
     "@solidjs/router": "^0.4.2",
     "@urql/core": "^2.6.1",
-    "colorthief": "^2.3.2",
     "graphql": "^15.8.0",
+    "quantize": "^1.2.0",
     "solid-js": "^1.4.7",
     "solid-urql": "^0.2.0"
   }
