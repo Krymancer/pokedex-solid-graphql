@@ -6,7 +6,7 @@ interface PokemonStatProps {
 }
 
 const PokemonStat: Component<PokemonStatProps> = (props) => {
-  return <div class="bg-white w-fit h-fit p-2 rounded-lg m-1">
+  return <div class="bg-white w-fit h-fit p-2 rounded-lg m-1 lg:text-xl text-sm opacity-50">
     <span class="font-bold uppercase">{props.name}: {props.value}</span>
   </div>;
 };

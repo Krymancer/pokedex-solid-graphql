@@ -8,8 +8,8 @@ interface PokemonSummaryProps {
 const PokemonSummary: Component<PokemonSummaryProps> = (props) => {
   return (
     <div class="flex flex-col">
-      <span class="text-white font-bold text-2xl">{`#${props.number.toString().padStart(3, '0')}`}</span>
-      <span class="text-white font-bold text-5xl capitalize">{props.name}</span>
+      <span class="text-white font-bold text-xl lg:text-2xl">{`#${props.number.toString().padStart(3, '0')}`}</span>
+      <span class="text-white font-bold text-3xl lg:text-5xl capitalize">{props.name}</span>
     </div>
   );
 };

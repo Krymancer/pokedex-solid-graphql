@@ -47,7 +47,7 @@ interface PokemonTypeIcon {
 const PokemonTypeIcon: Component<PokemonTypeIcon> = (props) => {
   const type = props.type || 'normal';
   return (
-    <div class="rounded-full p-2 bg-white w-[60px] h-[60px]">
+    <div class="rounded-full p-1 lg:p-2 bg-white lg:w-[60px] lg:h-[60px] w-[30px] h-[30px]">
       <img src={typesIcons[type]} alt={type} />
     </div>
   );
