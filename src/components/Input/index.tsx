@@ -23,7 +23,7 @@ const Input: Component<InputProps> = (props) => {
   function handleKeyDown(e) {
     setValue(e.target.value);
     if (e.key === 'Enter') {
-      const text = e.currentTarget.value;
+      const text = e.currentTarget.value.toLowerCase();
       console.log('Value', text);
       if (checkIfIsId(text)) {
         props.setId(parseInt(text));
