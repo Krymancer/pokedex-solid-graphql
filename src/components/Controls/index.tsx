@@ -7,7 +7,7 @@ import Input from '@components/Input';
 interface ControlsProps {
   next: () => void;
   prev: () => void;
-  current: number;
+  value: number;
   setId: (id: number) => void;
   setName: (name: string) => void;
 }
@@ -19,7 +19,7 @@ const Controls : Component<ControlsProps> = (props) => {
         <HiSolidArrowLeft/>
         Prev
       </div>
-      <Input setName={props.setName} setId={props.setId} value={props.current.toString()}/>
+      <Input setName={props.setName} setId={props.setId} value={props.value}/>
       <div onClick={props.next} class="flex items-center gap-3 bg-white p-3 rounded-lg opacity-50 cursor-pointer">
         Next
         <HiSolidArrowRight/>

@@ -46,11 +46,23 @@ const Main: Component = () => {
 
 
   function next() {
-    id() >= 800 ? setId(1) : setId(id() + 1);
+    if (pokemonId() < 807) {
+      setId(pokemonId() + 1);
+      setName('%%');
+    } else {
+      setId(1);
+      setName('%%');
+    }
   }
 
   function prev() {
-    id() <= 1 ? setId(800) : setId(id() - 1);
+    if (pokemonId() <= 1) {
+      setId(800);
+      setName('%%');
+    } else {
+      setId(pokemonId() - 1);
+      setName('%%');
+    }
   }
 
   return (
@@ -70,7 +82,7 @@ const Main: Component = () => {
             <PokemonStats stats={pokemon().pokemon_v2_pokemonstats} types={pokemon().pokemon_v2_pokemontypes} />
           </div>
         </div>
-        <Controls next={next} prev={prev} current={id()} setId={setId} setName={setName} />
+        <Controls next={next} prev={prev} value={pokemonId()} setId={setId} setName={setName} />
       </div>
     </Show>
   );

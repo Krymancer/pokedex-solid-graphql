@@ -3,11 +3,12 @@ import {Component, createSignal} from 'solid-js';
 interface InputProps{
   setName: (name: string) => void;
   setId: (id: number) => void;
-  value: string;
+  value: number;
 }
 
 const Input: Component<InputProps> = (props) => {
-  const [value, setValue] = createSignal(props.value);
+  // eslint-disable-next-line
+  const [value, setValue] = createSignal();
 
   function checkIfIsName(text: string) {
     // return if is a string with only letters
@@ -44,7 +45,7 @@ const Input: Component<InputProps> = (props) => {
     }
   }
 
-  return <input class="opacity-50 flex text-center rounded-md" value={value()} onKeyDown={handleKeyDown}></input>;
+  return <input class="opacity-50 flex text-center rounded-md" value={props.value} onKeyDown={handleKeyDown}></input>;
 };
 
 export default Input;
