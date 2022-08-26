@@ -1,14 +1,15 @@
-import {Component, createSignal, Show} from 'solid-js';
+import { Component, createSignal, Show } from 'solid-js';
 
-import {createGraphQLClient} from '@solid-primitives/graphql';
-import {PokemonResult} from '@graphql/types/pokemon';
-import {pokemonQuery} from '@graphql/queries/pokemon';
+import { createGraphQLClient } from '@solid-primitives/graphql';
+import { PokemonResult } from '@graphql/types/pokemon';
+import { pokemonQuery } from '@graphql/queries/pokemon';
 
 import JapaneseName from '@components/JapaneseName';
 import PokemonSummary from '@components/PokemonSummary';
 import PokemonStats from '@components/PokemonStats';
 import PokemonImage from '@components/PokemonImage';
 import Controls from '@components/Controls';
+import PokemonInfo from '@src/components/PokemonInfo';
 
 
 const Main: Component = () => {
@@ -20,8 +21,8 @@ const Main: Component = () => {
   const query = createGraphQLClient('https://beta.pokeapi.co/graphql/v1beta');
 
   const [data] = query<PokemonResult>(
-      pokemonQuery,
-      () => ({id: id(), name: name()}),
+    pokemonQuery,
+    () => ({ id: id(), name: name() }),
   );
 
   function pokemon() {
@@ -67,14 +68,11 @@ const Main: Component = () => {
 
   return (
     <Show when={data()} fallback={null}>
-      <div id="main" style={{'background-color': `${color()}`}} class="h-screen w-screen flex flex-col items-center justify-center transition-all duration-300 ease-linear">
+      <div id="main" style={{ 'background-color': `${color()}` }} class="h-screen w-screen flex flex-col items-center justify-center transition-all duration-300 ease-linear">
         <div class="w-full h-full justify-center items-center flex">
           <div class="flex flex-col">
             <PokemonImage id={pokemonId()} setColor={setColor} />
-            <div class="flex gap-3 text-white font-bold items-center justify-center lg:flex-row flex-col">
-              <span>Height: {height()}</span>
-              <span>Weight: {weight()}</span>
-            </div>
+            <PokemonInfo weight={weight()} height={height()} />
           </div>
           <div>
             <PokemonSummary name={pokemon().name} number={pokemonId()} />
